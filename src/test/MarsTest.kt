@@ -119,8 +119,14 @@ class MarsTest {
         assertEquals(outputMoveNorth, output)
     }
 
-    /*5 5
-1 2 N
-LMLMLMLMM
-1 3 N*/
+    @Test
+    fun `should execute complex moves`() {
+        val inputMoveNorth = "5 5\n1 2 N\nLMLMLMLMM"
+        val outputMoveNorth = "1 3 N"
+        val rover = Rover()
+
+        val output = rover.computeMoves(inputMoveNorth)
+
+        assertEquals(outputMoveNorth, output)
+    }
 }
