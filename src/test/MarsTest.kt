@@ -85,6 +85,7 @@ class MarsTest {
 
         assertEquals(outputMoveLeft, output)
     }
+
     @Test
     fun `should move east when turning left from south`() {
         val inputMoveLeft = "5 5\n1 2 S\nL"
@@ -95,6 +96,7 @@ class MarsTest {
 
         assertEquals(outputMoveLeft, output)
     }
+
     @Test
     fun `should move north when turning left from east`() {
         val inputMoveLeft = "5 5\n1 2 E\nL"
@@ -117,4 +119,8 @@ class MarsTest {
         assertEquals(outputMoveNorth, output)
     }
 
+    /*5 5
+1 2 N
+LMLMLMLMM
+1 3 N*/
 }

@@ -1,8 +1,6 @@
-import Rover.Command.LEFT
-import Rover.Command.MOVE
-import Rover.Command.RIGHT
-import java.lang.Exception
-import java.lang.IllegalArgumentException
+import Command.LEFT
+import Command.MOVE
+import Command.RIGHT
 
 /*5 5
 1 2 N
@@ -27,17 +25,5 @@ class Rover {
         return nextPosition.toString()
     }
 
-
-    enum class Command(val code: Char) {
-        LEFT('L'), RIGHT('R'), MOVE('M');
-        companion object {
-            fun from(code: Char) : Command =
-                when(code) {
-                    LEFT.code -> LEFT
-                    RIGHT.code -> RIGHT
-                    MOVE.code -> MOVE
-                    else -> throw IllegalArgumentException()
-                }
-        }
-    }
 }
+
