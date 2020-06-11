@@ -1,28 +1,36 @@
 import Command.*
-import Compass.Orientation.EAST
-import Compass.Orientation.NORTH
-import Compass.Orientation.SOUTH
-import Compass.Orientation.WEST
 
-data class Position(var x: Int, var y: Int, val compass: Compass, val newCompass: NewCompass) {
+data class Position(var x: Int, var y: Int, val newCompass: NewCompass) {
 
-    fun move() =
-        when (compass.orientation) {
-            NORTH -> copy(y = y + 1)
-            EAST -> copy(x = x + 1)
-            SOUTH -> copy(y = y - 1)
-            WEST -> copy(x = x - 1)
+    private fun move() =
+        when (newCompass) {
+            is North -> copy(y = y + 1)
+            is East -> copy(x = x + 1)
+            is South -> copy(y = y - 1)
+            is West -> copy(x = x - 1)
+            else -> this
         }
 
-    override fun toString(): String = "$x $y ${compass.orientation.code}"
-
-    fun turnRight(): Position = copy(compass = Compass(compass.turnRight()))
-
-    fun turnLeft(): Position = copy(compass = Compass(compass.turnLeft()))
+    override fun toString(): String = "$x $y $newCompass"
 
     fun evaluateMove(command: Command): Position = when (command) {
-        RIGHT -> turnRight()
-        LEFT -> turnLeft()
+        RIGHT -> copy(newCompass = newCompass.turnRight())
+        LEFT -> copy(newCompass = newCompass.turnLeft())
         MOVE -> move()
+    }
+
+    enum class Orientation(val code: String) {
+        NORTH("N"), EAST("E"), SOUTH("S"), WEST("W");
+
+        companion object {
+            fun from(orientation: String) =
+                when (orientation) {
+                    "N" -> NORTH
+                    "S" -> SOUTH
+                    "E" -> EAST
+                    "W" -> WEST
+                    else -> NORTH
+                }
+        }
     }
 }

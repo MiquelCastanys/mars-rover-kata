@@ -6,8 +6,7 @@ fun parsePosition(currentPosition: String): Position {
     return Position(
         x,
         y,
-        Compass(Compass.Orientation.from(currentOrientation)),
-        newCompassFactory(Compass.Orientation.from(currentOrientation))
+        newCompassFactory(Position.Orientation.from(currentOrientation))
     )
 }
 
