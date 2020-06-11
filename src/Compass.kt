@@ -1,4 +1,4 @@
-import Position.Orientation.*
+import java.lang.IllegalArgumentException
 
 interface Compass {
     fun turnRight(): Compass
@@ -34,10 +34,11 @@ class West : Compass {
     override fun toString(): String = "W"
 }
 
-fun newCompassFactory(orientation: Position.Orientation) =
-    when (orientation) {
-        NORTH -> North()
-        EAST -> East()
-        SOUTH -> South()
-        WEST -> West()
+fun compassFactory(orientationCode: String) =
+    when (orientationCode) {
+        "N" -> North()
+        "E" -> East()
+        "S" -> South()
+        "W" -> West()
+        else -> throw IllegalArgumentException()
     }
