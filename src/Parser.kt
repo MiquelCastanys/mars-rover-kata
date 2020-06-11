@@ -20,5 +20,5 @@ private fun hasMoveCommand(inputValues: List<String>) = inputValues.size > 2
 
 private fun parseCommands(inputValues: List<String>) =
     if (hasMoveCommand(inputValues))
-        inputValues[2].map { Command.from(it) }
+        inputValues[2].map { newCommandFactory(it) }
     else listOf()

@@ -14,7 +14,7 @@ class CommandExecutor(private val inputValues: List<Command>) {
     fun executeCommands(currentPosition: Position): String {
         var nextPosition = currentPosition
         inputValues.forEach {
-            nextPosition = nextPosition.evaluateMove(it)
+            nextPosition = it.execute(nextPosition)
         }
         return nextPosition.toString()
     }
