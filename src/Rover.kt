@@ -1,7 +1,3 @@
-import Command.LEFT
-import Command.MOVE
-import Command.RIGHT
-
 /*5 5
 1 2 N
 LMLMLMLMM
@@ -10,10 +6,12 @@ LMLMLMLMM
 class Rover {
     fun computeMoves(input: String): String {
         val (inputValues, currentPosition) = parseInput(input)
-        return executeCommand(inputValues, currentPosition)
+        return CommandExecutor(inputValues).executeCommands(currentPosition)
     }
+}
 
-    private fun executeCommand(inputValues: List<Command>, currentPosition: Position): String {
+class CommandExecutor(private val inputValues: List<Command>) {
+    fun executeCommands(currentPosition: Position): String {
         var nextPosition = currentPosition
         inputValues.forEach {
             nextPosition = nextPosition.evaluateMove(it)
@@ -21,4 +19,3 @@ class Rover {
         return nextPosition.toString()
     }
 }
-
