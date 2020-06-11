@@ -1,6 +1,8 @@
-import Command.*
+import Command.LEFT
+import Command.MOVE
+import Command.RIGHT
 
-data class Position(val coordinate: Coordinate, val compass: Compass) {
+data class Position(private val coordinate: Coordinate, private val compass: Compass) {
 
     private fun move() = copy(coordinate = compass.move(coordinate))
 
