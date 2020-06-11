@@ -4,8 +4,7 @@ fun parsePosition(currentPosition: String): Position {
     val y = currentPositionInfo[1].toInt()
     val currentOrientation = currentPositionInfo[2]
     return Position(
-        x,
-        y,
+        Coordinate(x, y),
         newCompassFactory(Position.Orientation.from(currentOrientation))
     )
 }
