@@ -1,21 +1,14 @@
 import Command.*
 
-data class Position(val coordinate: Coordinate, val newCompass: NewCompass) {
+data class Position(val coordinate: Coordinate, val compass: Compass) {
 
-    private fun move() =
-        when (newCompass) {
-            is North -> copy(coordinate = coordinate.incrementY())
-            is East -> copy(coordinate = coordinate.incrementX())
-            is South -> copy(coordinate = coordinate.decrementY())
-            is West -> copy(coordinate = coordinate.decrementX())
-            else -> this
-        }
+    private fun move() = copy(coordinate = compass.move(coordinate))
 
-    override fun toString(): String = "$coordinate $newCompass"
+    override fun toString(): String = "$coordinate $compass"
 
     fun evaluateMove(command: Command): Position = when (command) {
-        RIGHT -> copy(newCompass = newCompass.turnRight())
-        LEFT -> copy(newCompass = newCompass.turnLeft())
+        RIGHT -> copy(compass = compass.turnRight())
+        LEFT -> copy(compass = compass.turnLeft())
         MOVE -> move()
     }
 
