@@ -1,10 +1,14 @@
-
 fun parsePosition(currentPosition: String): Position {
     val currentPositionInfo = currentPosition.split(" ") //Extract parsing to a method in another class
     val x = currentPositionInfo[0].toInt()
     val y = currentPositionInfo[1].toInt()
     val currentOrientation = currentPositionInfo[2]
-    return Position(x, y, Compass(Compass.Orientation.from(currentOrientation)))
+    return Position(
+        x,
+        y,
+        Compass(Compass.Orientation.from(currentOrientation)),
+        newCompassFactory(Compass.Orientation.from(currentOrientation))
+    )
 }
 
 fun parseInput(input: String): Pair<List<Command>, Position> {

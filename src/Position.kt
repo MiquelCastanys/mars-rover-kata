@@ -1,9 +1,10 @@
+import Command.*
 import Compass.Orientation.EAST
 import Compass.Orientation.NORTH
 import Compass.Orientation.SOUTH
 import Compass.Orientation.WEST
 
-data class Position(var x: Int, var y: Int, val compass: Compass) {
+data class Position(var x: Int, var y: Int, val compass: Compass, val newCompass: NewCompass) {
 
     fun move() =
         when (compass.orientation) {
@@ -18,4 +19,10 @@ data class Position(var x: Int, var y: Int, val compass: Compass) {
     fun turnRight(): Position = copy(compass = Compass(compass.turnRight()))
 
     fun turnLeft(): Position = copy(compass = Compass(compass.turnLeft()))
+
+    fun evaluateMove(command: Command): Position = when (command) {
+        RIGHT -> turnRight()
+        LEFT -> turnLeft()
+        MOVE -> move()
+    }
 }

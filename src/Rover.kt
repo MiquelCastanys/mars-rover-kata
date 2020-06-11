@@ -16,14 +16,9 @@ class Rover {
     private fun executeCommand(inputValues: List<Command>, currentPosition: Position): String {
         var nextPosition = currentPosition
         inputValues.forEach {
-            nextPosition = when (it) {
-                RIGHT -> nextPosition.turnRight()
-                LEFT -> nextPosition.turnLeft()
-                MOVE -> currentPosition.move()
-            }
+            nextPosition = nextPosition.evaluateMove(it)
         }
         return nextPosition.toString()
     }
-
 }
 
